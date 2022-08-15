@@ -1,3 +1,7 @@
+pub mod allocation;
+pub mod projects;
+pub mod traits;
+
 #[cfg(test)]
 mod tests {
     #[test]

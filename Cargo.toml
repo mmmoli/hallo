@@ -5,7 +5,13 @@ edition = "2021"
 description = "Outcome planning for upcoming projects using Monte Carlo simulations"
 license-file = "LICENSE.md"
 repository = "https://github.com/mmmoli/hallo/"
+keywords = ["montecarlo", "planning"]
+homepage = "https://github.com/mmmoli/hallo/"
+documentation = "http://docs.rs/rudiments"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+chrono = "0.4.21"
+color-eyre = "0.6.2"
+
