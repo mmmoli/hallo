@@ -3,7 +3,7 @@ use chrono::{prelude::*, Duration};
 use color_eyre::eyre::Result;
 
 /// # Allocation
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub struct Allocation {
     pub end_date: Date<Utc>,
     pub start_date: Date<Utc>,
@@ -66,11 +66,11 @@ impl Default for Allocation {
 }
 
 impl TimeBound for Allocation {
-    fn start_date(&self) -> Date<Utc> {
-        self.start_date
+    fn start_date(&self) -> &Date<Utc> {
+        &self.start_date
     }
-    fn end_date(&self) -> Date<Utc> {
-        self.end_date
+    fn end_date(&self) -> &Date<Utc> {
+        &self.end_date
     }
     fn set_start_date(
         &mut self,

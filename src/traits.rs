@@ -22,8 +22,8 @@ impl std::fmt::Display for TimeBoundError {
 }
 
 pub trait TimeBound {
-    fn start_date(&self) -> Date<Utc>;
-    fn end_date(&self) -> Date<Utc>;
+    fn start_date(&self) -> &Date<Utc>;
+    fn end_date(&self) -> &Date<Utc>;
     fn set_start_date(&mut self, date: &Date<Utc>) -> Result<Date<Utc>, TimeBoundError>;
     fn set_end_date(&mut self, date: &Date<Utc>) -> Result<Date<Utc>, TimeBoundError>;
 }

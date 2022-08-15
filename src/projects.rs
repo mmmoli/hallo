@@ -35,6 +35,29 @@ impl Default for ProjectBuilder {
 }
 
 impl ProjectBuilder {
+    /// Sets a start date for the project
+    ///
+    /// ## Example
+    /// ```
+    /// use hallo::projects::ProjectBuilder;
+    /// use hallo::traits::TimeBound;
+    /// use chrono::prelude::*;
+    ///
+    /// let date = Utc.ymd(2022, 8, 16);
+    /// let project = ProjectBuilder::default()
+    ///   .start_date(&date)
+    ///   .build();
+    /// assert_eq!(project.allocation().start_date(), &date)
+    /// ```
+    pub fn start_date(mut self, date: &Date<Utc>) -> ProjectBuilder {
+        let duration = self.allocation.duration();
+        self.allocation = Allocation {
+            start_date: *date,
+            end_date: *date + duration,
+        };
+        self
+    }
+
     /// This method sets the project's name.
     ///
     /// ## Example
@@ -45,9 +68,26 @@ impl ProjectBuilder {
     ///   .build();
     /// assert_eq!(project.name, "My New Project".to_string())
     /// ```
-    pub fn name(mut self, name: String) -> ProjectBuilder {
-        self.name = name;
+    pub fn name(mut self, name: &str) -> ProjectBuilder {
+        self.name = String::from(name);
         self
+    }
+
+    /// This method sets the project's duration in weeks.
+    ///
+    /// ## Example
+    /// ```
+    /// use hallo::projects::ProjectBuilder;
+    /// use chrono::Duration;
+    ///
+    /// let duration = Duration::weeks(33);
+    /// let project = ProjectBuilder::default()
+    ///   .duration_weeks(33)
+    ///   .build();
+    /// assert_eq!(project.duration(), duration)
+    /// ```
+    pub fn duration_weeks(self, num_of_weeks: i64) -> ProjectBuilder {
+        self.duration(&Duration::weeks(num_of_weeks))
     }
 
     /// This method sets the project's duration.
@@ -72,6 +112,8 @@ impl ProjectBuilder {
         self
     }
 
+    /// Builds the Project.
+    /// Use at the end of the call chain.
     pub fn build(self) -> Project {
         Project {
             allocation: self.allocation,
@@ -138,6 +180,19 @@ impl Project {
     /// ```
     pub fn value(&self) -> u32 {
         self.approx_value
+    }
+
+    /// Returns the Project's allocation.
+    ///
+    /// ## Example
+    /// ```
+    /// use chrono::{prelude::*, Duration};
+    /// use hallo::projects::Project;
+    ///
+    /// let p = Project::default();    
+    /// ```
+    pub fn allocation(&self) -> Allocation {
+        self.allocation
     }
 }
 
