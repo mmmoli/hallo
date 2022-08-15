@@ -1,4 +1,16 @@
-//! *hallo* predicts different outcomes of the future by *rolling the dice* many, many times.
+//! *hallo* predicts different outcomes of the future
+//! by *rolling the dice* many, many times.
+//!
+//! The main idea is to create a collection of things that
+//! span a timeline. Some generate $$$. Some use it.
+//!
+//! Then we run many scenarios:
+//!
+//! - what if only the first one happens?
+//! - what if the 2nd and 10th one happen?
+//!
+//! We do that thousands of time to build up a picture of
+//! different possible outcomes.
 //!
 //! # Features
 //!
