@@ -58,6 +58,21 @@ impl ProjectBuilder {
         self
     }
 
+    /// This method sets the project's value.
+    ///
+    /// ## Example
+    /// ```
+    /// use hallo::projects::ProjectBuilder;
+    /// let project = ProjectBuilder::default()
+    ///   .value(10000)
+    ///   .build();
+    /// assert_eq!(project.value(), 10000)
+    /// ```
+    pub fn value(mut self, value: u32) -> ProjectBuilder {
+        self.value = value;
+        self
+    }
+
     /// This method sets the project's name.
     ///
     /// ## Example
@@ -147,7 +162,7 @@ impl Default for Project {
 
 impl std::fmt::Display for Project {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Project has no duration.")
+        write!(f, "{} ({}) {}", self.name, self.allocation, self.value())
     }
 }
 
@@ -229,20 +244,34 @@ impl Contribution for Project {
 #[cfg(test)]
 mod tests {
 
-    // use super::*;
+    use super::*;
 
-    // #[test]
-    // fn random_contribution() {
-    //     let name = String::from("My Project");
-    //     let start = Utc.ymd(2022, 7, 8);
-    //     let duration = Duration::weeks(2);
-    //     let approx_value: u32 = 20000;
-    //     let p = Project::new(name, approx_value, start, &duration);
-    //     let during = start + Duration::weeks(1);
-    //     let contribution = p.get_contribution_on(during);
-    //     assert!(contribution >= 0);
-    //     assert!(contribution <= approx_value as i32)
-    // }
+    #[test]
+    fn default_duration() {
+        let p = Project::default();
+        assert_eq!(p.duration(), Duration::weeks(4))
+    }
+
+    #[test]
+    fn default_builder_duration() {
+        let p = ProjectBuilder::default().build();
+        assert_eq!(p.duration(), Duration::weeks(4))
+    }
+
+    #[test]
+    fn builder_set_date_duration() {
+        let p = ProjectBuilder::default()
+            .start_date(&Utc.ymd(2014, 7, 10))
+            .build();
+        assert_eq!(p.duration(), Duration::weeks(4))
+    }
+
+    #[test]
+    fn dynamic_date() {
+        let new_date = Utc.ymd(2014, 7, 10) + Duration::weeks(2);
+        let p = ProjectBuilder::default().start_date(&new_date).build();
+        assert_eq!(p.duration(), Duration::weeks(4))
+    }
 
     // #[test]
     // fn contribution_in_past() {

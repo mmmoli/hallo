@@ -11,6 +11,14 @@ documentation = "http://docs.rs/rudiments"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+name = "hallo"
+path = "src/lib.rs"
+
+[[bin]]
+name = "hallo"
+path = "src/main.rs"
+
 [dependencies]
 chrono = "0.4.21"
 color-eyre = "0.6.2"

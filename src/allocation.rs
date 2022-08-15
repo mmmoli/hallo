@@ -65,6 +65,12 @@ impl Default for Allocation {
     }
 }
 
+impl std::fmt::Display for Allocation {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} to {}", self.start_date(), self.end_date())
+    }
+}
+
 impl TimeBound for Allocation {
     fn start_date(&self) -> &Date<Utc> {
         &self.start_date
