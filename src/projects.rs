@@ -145,6 +145,12 @@ impl Default for Project {
     }
 }
 
+impl std::fmt::Display for Project {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Project has no duration.")
+    }
+}
+
 impl Project {
     /// Returns the Project's approximate duration.
     ///
@@ -215,7 +221,7 @@ impl Contribution for Project {
     fn get_contribution_on(&self, date: &Date<Utc>) -> u32 {
         match self.allocation.is_active_on(date) {
             true => self.approx_value,
-            false => 0 as u32,
+            false => 0_u32,
         }
     }
 }

@@ -15,7 +15,7 @@ pub mod traits;
 #[cfg(test)]
 mod tests {
     use crate::projects::ProjectBuilder;
-    use chrono::prelude::*;
+    use chrono::{prelude::*, Duration};
 
     #[test]
     fn it_works() {
@@ -23,14 +23,23 @@ mod tests {
         let p1 = ProjectBuilder::default()
             .name("p1")
             .duration_weeks(3)
+            .start_date(&(today + Duration::weeks(2)))
             .build();
+
         let p2 = ProjectBuilder::default()
             .name("p2")
             .duration_weeks(5)
+            .start_date(&(today + Duration::weeks(8)))
             .build();
+
         let p3 = ProjectBuilder::default()
             .name("p3")
             .duration_weeks(5)
+            .start_date(&(today + Duration::weeks(4)))
             .build();
+
+        println!("{}", p1);
+        println!("{}", p2);
+        println!("{}", p3);
     }
 }
