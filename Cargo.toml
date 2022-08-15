@@ -3,7 +3,7 @@ name = "hallo"
 version = "0.1.0"
 edition = "2021"
 description = "Outcome planning for upcoming projects using Monte Carlo simulations"
-license-file = "LICENSE.txt"
+license-file = "LICENSE.md"
 repository = "https://github.com/mmmoli/hallo/"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
