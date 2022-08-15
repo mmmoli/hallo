@@ -5,7 +5,7 @@ edition = "2021"
 description = "Outcome planning for upcoming projects using Monte Carlo simulations"
 license-file = "LICENSE.md"
 repository = "https://github.com/mmmoli/hallo/"
-keywords = ["montecarlo", "project planning", "statistical analysis", "charts", "simulation"]
+keywords = ["montecarlo", "project-planning", "statistical-analysis", "charts", "simulation"]
 homepage = "https://github.com/mmmoli/hallo/"
 documentation = "http://docs.rs/hallo"
 
